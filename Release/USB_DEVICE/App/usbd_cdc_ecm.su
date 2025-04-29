@@ -1,0 +1,16 @@
+../USB_DEVICE/App/usbd_cdc_ecm.c:647:16:USBD_CDC_ECM_EP0_RxReady	8	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:766:10:USBD_CDC_ECM_GetDeviceQualifierDescriptor	0	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:673:17:USBD_CDC_ECM_GetFSCfgDesc	16	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:735:17:USBD_CDC_ECM_GetOtherSpeedCfgDesc	0	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:704:17:USBD_CDC_ECM_GetHSCfgDesc	16	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:592:16:USBD_CDC_ECM_DataOut	16	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:431:16:USBD_CDC_ECM_Setup	32	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:388:16:USBD_CDC_ECM_DeInit	16	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:290:16:USBD_CDC_ECM_Init	24	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:779:9:USBD_CDC_ECM_RegisterInterface	0	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:836:9:USBD_CDC_ECM_SetTxBuffer	0	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:859:9:USBD_CDC_ECM_SetRxBuffer	0	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:886:9:USBD_CDC_ECM_TransmitPacket	8	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:927:9:USBD_CDC_ECM_ReceivePacket	8	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:956:9:USBD_CDC_ECM_SendNotification	16	static
+../USB_DEVICE/App/usbd_cdc_ecm.c:532:16:USBD_CDC_ECM_DataIn	24	static

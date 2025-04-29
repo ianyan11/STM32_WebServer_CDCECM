@@ -1,0 +1,14 @@
+#ifndef __LWIPOPTS_H__
+#define __LWIPOPTS_H__
+
+#define NO_SYS                  0
+#define LWIP_SOCKET             1
+#define LWIP_NETCONN            0
+#define LWIP_DHCP               1
+#define LWIP_ICMP               1
+#define LWIP_TCP                1
+#define LWIP_UDP                1
+#define MEM_ALIGNMENT           4
+#define MEM_SIZE                (10*1024)
+
+#endif /* __LWIPOPTS_H__ */
