@@ -2,5 +2,5 @@
 ../USB_DEVICE/App/usbd_cdc_ecm_if.c:109:15:CDC_ECM_Itf_DeInit	16	static
 ../USB_DEVICE/App/usbd_cdc_ecm_if.c:132:15:CDC_ECM_Itf_Control	24	static
 ../USB_DEVICE/App/usbd_cdc_ecm_if.c:210:15:CDC_ECM_Itf_Receive	24	static
-../USB_DEVICE/App/usbd_cdc_ecm_if.c:247:15:CDC_ECM_Itf_TransmitCplt	24	static
-../USB_DEVICE/App/usbd_cdc_ecm_if.c:263:15:CDC_ECM_Itf_Process	24	static
+../USB_DEVICE/App/usbd_cdc_ecm_if.c:243:15:CDC_ECM_Itf_TransmitCplt	24	static
+../USB_DEVICE/App/usbd_cdc_ecm_if.c:259:15:CDC_ECM_Itf_Process	24	static

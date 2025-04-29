@@ -211,22 +211,18 @@ static int8_t CDC_ECM_Itf_Receive(uint8_t *Buf, uint32_t *Len)
 {
     struct pbuf *p;
 
-    /* Allocate a pbuf */
     p = pbuf_alloc(PBUF_RAW, *Len, PBUF_POOL);
-
     if (p != NULL)
     {
-        /* Copy data into pbuf */
         pbuf_take(p, Buf, *Len);
 
-        /* Pass the packet to the LwIP stack */
         if (gnetif.input(p, &gnetif) != ERR_OK)
         {
             pbuf_free(p);
         }
     }
 
-    /* Prepare OUT endpoint to receive next packet */
+    /* Prepare to receive next packet */
     USBD_CDC_ECM_ReceivePacket(&hUsbDeviceFS);
 
     return (USBD_OK);

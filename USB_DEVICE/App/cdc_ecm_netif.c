@@ -33,46 +33,44 @@ err_t cdc_ecm_netif_init(struct netif *netif)
 
     netif->mtu = 1500;
     netif->flags = NETIF_FLAG_BROADCAST | NETIF_FLAG_ETHARP | NETIF_FLAG_LINK_UP;
-
+    netif->hwaddr_len = ETH_HWADDR_LEN;
     return ERR_OK;
 }
+
+static uint8_t cdc_ecm_tx_buffer[CDC_ECM_ETH_MAX_SEGSZE]; // Static, global buffer
 
 err_t cdc_ecm_low_level_output(struct netif *netif, struct pbuf *p)
 {
-    struct pbuf *q;
-    uint8_t *buffer;
-    uint32_t len = 0;
-
-    buffer = malloc(p->tot_len);
-    if (buffer == NULL)
-    {
-        return ERR_MEM;
-    }
-
-    /* Copy packet into buffer */
-    for (q = p; q != NULL; q = q->next)
-    {
-        memcpy(buffer + len, q->payload, q->len);
-        len += q->len;
-    }
-
-    /* Check if USB CDC ECM is ready */
     USBD_CDC_ECM_HandleTypeDef *hcdc = (USBD_CDC_ECM_HandleTypeDef *)(hUsbDeviceFS.pClassData);
     if (hcdc == NULL || hcdc->TxState != 0)
     {
-        free(buffer);
-        return ERR_IF; // Interface busy
+        return ERR_IF; // USB not ready
     }
 
-    /* Send it through CDC ECM */
-    USBD_CDC_ECM_SetTxBuffer(&hUsbDeviceFS, buffer, len);
+    if (p->tot_len > CDC_ECM_ETH_MAX_SEGSZE)
+    {
+        return ERR_MEM; // Packet too large
+    }
+
+    /* Copy the data into the internal TX buffer directly */
+    uint8_t *dest = hcdc->TxBuffer;
+    struct pbuf *q;
+    uint32_t offset = 0;
+
+    for (q = p; q != NULL; q = q->next)
+    {
+        memcpy(dest + offset, q->payload, q->len);
+        offset += q->len;
+    }
+
+    /* Setup and send */
+    USBD_CDC_ECM_SetTxBuffer(&hUsbDeviceFS, hcdc->TxBuffer, offset);
     if (USBD_CDC_ECM_TransmitPacket(&hUsbDeviceFS) != USBD_OK)
     {
-        free(buffer);
         return ERR_IF;
     }
 
-    free(buffer);
     return ERR_OK;
 }
+
 

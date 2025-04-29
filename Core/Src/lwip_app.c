@@ -26,9 +26,9 @@ void MX_LWIP_Init(void)
     lwip_init();
 
     /* Set static IP address */
-    IP4_ADDR(&ipaddr, 192, 168, 7, 2);  // <<< Change to .2
-    IP4_ADDR(&netmask, 255, 255, 255, 0);
-    IP4_ADDR(&gw, 192, 168, 7, 1);      // <<< Gateway is still .1 (the PC)
+    IP4_ADDR(&ipaddr, 192, 168, 7, 1);  // STM32 IP address
+    IP4_ADDR(&netmask, 255, 255, 255, 0); // Subnet mask
+    IP4_ADDR(&gw, 192, 168, 7, 1);      // Gateway (can be itself)
 
     /* Add network interface */
     netif_add(&gnetif, &ipaddr, &netmask, &gw, NULL, cdc_ecm_netif_init, ethernet_input);

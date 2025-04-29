@@ -90,7 +90,6 @@ int main(void)
   MX_USB_DEVICE_Init();
   /* USER CODE BEGIN 2 */
   MX_LWIP_Init();
-
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -98,9 +97,11 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-	  //MX_LWIP_Process();  // to handle timeouts and packet processing
-
+	//MX_LWIP_Process();  // to handle timeouts and packet processing
+	sys_check_timeouts();
     /* USER CODE BEGIN 3 */
+	HAL_GPIO_TogglePin(BLUE_LED_GPIO_Port, BLUE_LED_Pin);  // Blink the blue LED!
+	HAL_Delay(500);
   }
   /* USER CODE END 3 */
 }
